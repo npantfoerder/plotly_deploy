@@ -56,22 +56,22 @@ function buildMetadata(sample) {
 // D1: 1. Create the buildChart function.
 function buildCharts(sample) {
   // D1: 2. Use d3.json to load the samples.json file 
-  d3.json("samples.json").then((data) => {
-    console.log(data);
-
+  d3.json("static/samples.json").then((data) => {
     // D1: 3. Create a variable that holds the samples array. 
     var samplesArray = data.samples;
+    console.log(samplesArray);
 
     // D1: 4. Create a variable that filters the samples for the object with the desired sample number.
     var filteredSamples = samplesArray.filter(object => object.id === sample);
 
     // D3: 1. Create a variable that filters the metadata array for the object with the desired sample number.
+    var filteredMetadata = data.metadata.filter(object => object.id === parseInt(sample));
 
     // D1: 5. Create a variable that holds the first sample in the array.
     var firstSample = filteredSamples[0];
 
     // D3: 2. Create a variable that holds the first sample in the metadata array.
-    
+    var firstMetadataSample = filteredMetadata[0];
 
     // D1: 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otu_ids = firstSample.otu_ids;
@@ -79,7 +79,7 @@ function buildCharts(sample) {
     var sample_values = firstSample.sample_values;
 
     // D3: 3. Create a variable that holds the washing frequency.
-   
+    var wfeq = firstMetadataSample.wfreq;
 
     // D1: 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order 
@@ -136,6 +136,6 @@ function buildCharts(sample) {
     };
 
     // D3: 6. Use Plotly to plot the gauge data and layout.
-    
+    Plotly.newPlot('gauge', gaugeData, gaugeLayout);
   });
 }
