@@ -9,6 +9,8 @@ Roza, a biological researcher in a micoobiology laboratory, is interested in bac
 - Gauge chart for the washing frequency
 - Bubble chart of all samples found
 
+Link to web page: https://npantfoerder.github.io/plotly_deploy/
+
 ### Resources
 - Data Sources: samples.json
 - Software: JavaScript 1.7, Virtual Studio Code 1.48.2
