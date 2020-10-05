@@ -103,15 +103,16 @@ function buildCharts(sample) {
     Plotly.newPlot('bar', barData, barLayout);
 
     // D2: 1. Create the trace for the bubble chart.
+    var largestSampleValue = sample_values[0];
     var bubbleData = [{
       x: otu_ids,
       y: sample_values,
       text: otu_labels,
       mode: 'markers',
       marker: {
-        size: sample_values,
+        size: sample_values.map(val => val/largestSampleValue*150),
         color: otu_ids,
-        colorscale: 'Earth'
+        colorscale: 'Earth' //Portland
       }
     }];
     
@@ -126,13 +127,28 @@ function buildCharts(sample) {
     Plotly.newPlot('bubble', bubbleData, bubbleLayout);   
     
     // D3: 4. Create the trace for the gauge chart.
-    var gaugeData = [
-     
-    ];
+    var gaugeData = [{
+      domain: {row: 1, column: 1},
+      value: wfeq,
+      title: {text: '<b>Belly Button Washing Frequency</b><br>Scrubs per Week'},
+      type: 'indicator',
+      mode: 'gauge+number',
+      gauge: {
+        axis: {range: [0, 10], dtick: 2},
+        bar: {color: 'black'},
+        steps: [
+          {range: [0, 2], color: 'red'},
+          {range: [2, 4], color: 'orange'},
+          {range: [4, 6], color: 'yellow'},
+          {range: [6, 8], color: 'lightgreen'},
+          {range: [8, 10], color: 'green'}
+        ]
+      }
+    }];
     
     // D3: 5. Create the layout for the gauge chart.
     var gaugeLayout = { 
-     
+      margin: {t: 0, b: 0}
     };
 
     // D3: 6. Use Plotly to plot the gauge data and layout.
