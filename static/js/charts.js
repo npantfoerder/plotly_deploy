@@ -112,7 +112,7 @@ function buildCharts(sample) {
       marker: {
         size: sample_values.map(val => val/largestSampleValue*150),
         color: otu_ids,
-        colorscale: 'Earth' //Portland
+        colorscale: 'Portland' //Earth
       }
     }];
     
